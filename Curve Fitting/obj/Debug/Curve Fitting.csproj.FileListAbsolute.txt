@@ -1,0 +1,18 @@
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\Curve Fitting.exe.config
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\Curve Fitting.exe
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\Curve Fitting.pdb
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\LumenWorks.Framework.IO.dll
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\MathNet.Numerics.dll
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\ScottPlot.dll
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\ScottPlot.WinForms.dll
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\System.Drawing.Common.dll
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\LumenWorks.Framework.IO.xml
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\bin\Debug\MathNet.Numerics.xml
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\obj\Debug\Curve Fitting.csprojAssemblyReference.cache
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\obj\Debug\Curve_Fitting.Main.resources
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\obj\Debug\Curve_Fitting.Properties.Resources.resources
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\obj\Debug\Curve Fitting.csproj.GenerateResource.cache
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\obj\Debug\Curve Fitting.csproj.CoreCompileInputs.cache
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\obj\Debug\Curve Fitting.csproj.CopyComplete
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\obj\Debug\Curve Fitting.exe
+C:\Users\Nezumi\Documents\Visual Studio 2019\Projects\Curve Fitting\Curve Fitting\obj\Debug\Curve Fitting.pdb
