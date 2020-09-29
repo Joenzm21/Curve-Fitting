@@ -1,7 +1,7 @@
 # Curve Fitting
 An Application to fitting curve, based on input data. It has some key points:
 - Support .CSV File.
-- Domain Supported.
+- Support Domain.
 - Can custom choose the order of the polynomial equation.
 - Easy to sort the point list.
 - Also support round the coefficient of the equation.
