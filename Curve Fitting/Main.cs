@@ -64,7 +64,7 @@ namespace Curve_Fitting
 
         private void Apply()
         {
-            int width = (int)((graph.Size.Width * 0.8) - 260.0);
+            int width = (int)(graph.Size.Width);
             graph.plt.Clear();
             int count = valuelist.Items.Count;
             if ((ordernum.Value < count) && (count != 0))
@@ -134,7 +134,8 @@ namespace Curve_Fitting
                 graph.plt.Title(string.Join(Environment.NewLine, formularstrings));
                 graph.plt.PlotFunction(FuncCalc);
             }
-            graph.Render();
+            else graph.plt.Title("");
+           graph.Render();
         }
 
         private void domainin_KeyDown(object sender, KeyEventArgs e)
@@ -226,10 +227,8 @@ namespace Curve_Fitting
 
         private void vl_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
-            {
-                Remove();
-            }
+            if (e.KeyCode == Keys.Delete)            
+                Remove();            
         }
 
         private void xyin_KeyDown(object sender, KeyEventArgs e)
@@ -262,13 +261,13 @@ public class MDomain
             {
                 closea = interval[0][0] == '[';
                 double.TryParse(interval[0].Substring(1, interval[0].Length - 1), out double num);
-                a = new double?(num);
+                a = num;
             }
             if (!string.IsNullOrEmpty(interval[1]))
             {
                 closeb = interval[1][interval[1].Length - 1] == ']';
                 double.TryParse(interval[1].Substring(0, interval[1].Length - 1), out double num2);
-                b = new double?(num2);
+                b = num2;
             }
         }
         catch
