@@ -17,7 +17,7 @@ namespace Curve_Fitting
     {
         private static readonly string superscripts = @"⁰¹²³⁴⁵⁶⁷⁸⁹";
         private MDomain domain;
-        private double[] formula;
+        private double[] equation;
         private double dpi;
 
         public Main()
@@ -80,32 +80,32 @@ namespace Curve_Fitting
                     yarr[i] = y;
                 }
                 if (ordernum.Value > 1)
-                    formula = Fit.Polynomial(xarr, yarr, (int)ordernum.Value);
+                    equation = Fit.Polynomial(xarr, yarr, (int)ordernum.Value);
                 else if (ordernum.Value == 1)
                 {
                     Tuple<double, double> tuple = Fit.Line(xarr, yarr);
-                    formula = new double[] { tuple.Item1, tuple.Item2 };
+                    equation = new double[] { tuple.Item1, tuple.Item2 };
                 }
                 else
-                    formula = new double[] { Enumerable.Average(yarr) };
-                List<string> formularstrings = new List<string> { "f(x) = " };
-                for (int j = formula.Length - 1; j >= 0; j--)
+                    equation = new double[] { Enumerable.Average(yarr) };
+                List<string> equationrstrings = new List<string> { "f(x) = " };
+                for (int j = equation.Length - 1; j >= 0; j--)
                 {
                     string str;
                     switch (j)
                     {
                         case 0:
-                            str = Math.Round(formula[j], (int)dplacesin.Value).ToString();
-                            if (GetWidthSize(formularstrings[formularstrings.Count - 1] + str) > width)
-                                formularstrings.Add(str);
-                            else formularstrings[formularstrings.Count - 1] += str;
+                            str = Math.Round(equation[j], (int)dplacesin.Value).ToString();
+                            if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
+                                equationrstrings.Add(str);
+                            else equationrstrings[equationrstrings.Count - 1] += str;
                             break;
 
                         case 1:
-                            str = Math.Round(formula[j], (int)dplacesin.Value).ToString() + "x + ";
-                            if (GetWidthSize(formularstrings[formularstrings.Count - 1] + str) > width)
-                                formularstrings.Add(str);
-                            else formularstrings[formularstrings.Count - 1] += str;
+                            str = Math.Round(equation[j], (int)dplacesin.Value).ToString() + "x + ";
+                            if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
+                                equationrstrings.Add(str);
+                            else equationrstrings[equationrstrings.Count - 1] += str;
                             break;
 
                         default:
@@ -116,10 +116,10 @@ namespace Curve_Fitting
                                 powerstring += superscripts[power % 10].ToString();
                                 power /= 10;
                             }
-                            str = Math.Round(formula[j], (int)dplacesin.Value).ToString() + "x" + string.Join("", Enumerable.Reverse(powerstring)) + " + ";
-                            if (GetWidthSize(formularstrings[formularstrings.Count - 1] + str) > width)
-                                formularstrings.Add(str);
-                            else formularstrings[formularstrings.Count - 1] += str;
+                            str = Math.Round(equation[j], (int)dplacesin.Value).ToString() + "x" + string.Join("", Enumerable.Reverse(powerstring)) + " + ";
+                            if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
+                                equationrstrings.Add(str);
+                            else equationrstrings[equationrstrings.Count - 1] += str;
                             break;
 
                     }
@@ -131,11 +131,11 @@ namespace Curve_Fitting
                     graph.Render();
                     return;
                 }
-                graph.plt.Title(string.Join(Environment.NewLine, formularstrings));
-                graph.plt.PlotFunction(FuncCalc);
+                graph.plt.Title(string.Join(Environment.NewLine, equationrstrings));
+                graph.plt.PlotFunction(FuncCalc, System.Drawing.Color.Red, 2);
             }
             else graph.plt.Title("");
-           graph.Render();
+            graph.Render();
         }
 
         private void domainin_KeyDown(object sender, KeyEventArgs e)
@@ -162,8 +162,8 @@ namespace Curve_Fitting
             if (!domain.Check(x))
                 return null;
             double res = 0;
-            for (int i = formula.Length - 1; i >= 0; i--)
-                res += formula[i] * Math.Pow(x, i);
+            for (int i = equation.Length - 1; i >= 0; i--)
+                res += equation[i] * Math.Pow(x, i);
             return res;
         }
 
@@ -227,8 +227,8 @@ namespace Curve_Fitting
 
         private void vl_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)            
-                Remove();            
+            if (e.KeyCode == Keys.Delete)
+                Remove();
         }
 
         private void xyin_KeyDown(object sender, KeyEventArgs e)
@@ -238,11 +238,6 @@ namespace Curve_Fitting
                 Add();
                 xyin.Clear();
             }
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
