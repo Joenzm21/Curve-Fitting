@@ -35,35 +35,35 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.graph = new ScottPlot.FormsPlot();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.limitv = new System.Windows.Forms.NumericUpDown();
+            this.ordernum = new System.Windows.Forms.NumericUpDown();
+            this.domainin = new System.Windows.Forms.TextBox();
+            this.xyin = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.valuelist = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.xyin = new System.Windows.Forms.TextBox();
-            this.domainin = new System.Windows.Forms.TextBox();
-            this.ordernum = new System.Windows.Forms.NumericUpDown();
-            this.dplacesin = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ordernum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dplacesin)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.limitv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordernum)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // openCSVDialog
             // 
-            this.openCSVDialog.FileName = "openFileDialog1";
+            this.openCSVDialog.FileName = "*.csv";
             // 
             // contextMenuStrip1
             // 
@@ -113,7 +113,157 @@
             this.graph.Location = new System.Drawing.Point(3, 16);
             this.graph.Name = "graph";
             this.graph.Size = new System.Drawing.Size(1119, 755);
-            this.graph.TabIndex = 0;
+            this.graph.TabIndex = 5;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.groupBox4, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox3, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(1134, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(274, 774);
+            this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.limitv);
+            this.groupBox4.Controls.Add(this.ordernum);
+            this.groupBox4.Controls.Add(this.domainin);
+            this.groupBox4.Controls.Add(this.xyin);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(3, 686);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(268, 85);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(159, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Limit:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label3.Location = new System.Drawing.Point(154, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Order:";
+            // 
+            // limitv
+            // 
+            this.limitv.DecimalPlaces = 5;
+            this.limitv.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.limitv.Location = new System.Drawing.Point(191, 19);
+            this.limitv.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.limitv.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            327680});
+            this.limitv.Name = "limitv";
+            this.limitv.Size = new System.Drawing.Size(69, 20);
+            this.limitv.TabIndex = 6;
+            this.limitv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.limitv.Value = new decimal(new int[] {
+            6,
+            0,
+            0,
+            262144});
+            this.limitv.ValueChanged += new System.EventHandler(this.ordernum_ValueChanged);
+            // 
+            // ordernum
+            // 
+            this.ordernum.Location = new System.Drawing.Point(191, 51);
+            this.ordernum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ordernum.Name = "ordernum";
+            this.ordernum.Size = new System.Drawing.Size(69, 20);
+            this.ordernum.TabIndex = 5;
+            this.ordernum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ordernum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ordernum.ValueChanged += new System.EventHandler(this.ordernum_ValueChanged);
+            // 
+            // domainin
+            // 
+            this.domainin.Location = new System.Drawing.Point(48, 51);
+            this.domainin.Name = "domainin";
+            this.domainin.Size = new System.Drawing.Size(105, 20);
+            this.domainin.TabIndex = 4;
+            this.domainin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.domainin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.domainin_KeyDown);
+            // 
+            // xyin
+            // 
+            this.xyin.Location = new System.Drawing.Point(48, 19);
+            this.xyin.Name = "xyin";
+            this.xyin.Size = new System.Drawing.Size(105, 20);
+            this.xyin.TabIndex = 3;
+            this.xyin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.xyin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.xyin_KeyDown);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(11, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "   D =";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "X, Y =";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.valuelist);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(268, 677);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Point List";
             // 
             // valuelist
             // 
@@ -158,133 +308,6 @@
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader4.Width = 107;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.valuelist);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(268, 677);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Point List";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "X, Y =";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(11, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "   D =";
-            // 
-            // xyin
-            // 
-            this.xyin.Location = new System.Drawing.Point(48, 19);
-            this.xyin.Name = "xyin";
-            this.xyin.Size = new System.Drawing.Size(100, 20);
-            this.xyin.TabIndex = 3;
-            this.xyin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.xyin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.xyin_KeyDown);
-            // 
-            // domainin
-            // 
-            this.domainin.Location = new System.Drawing.Point(48, 51);
-            this.domainin.Name = "domainin";
-            this.domainin.Size = new System.Drawing.Size(100, 20);
-            this.domainin.TabIndex = 4;
-            this.domainin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.domainin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.domainin_KeyDown);
-            // 
-            // ordernum
-            // 
-            this.ordernum.Location = new System.Drawing.Point(205, 51);
-            this.ordernum.Name = "ordernum";
-            this.ordernum.Size = new System.Drawing.Size(55, 20);
-            this.ordernum.TabIndex = 5;
-            this.ordernum.ValueChanged += new System.EventHandler(this.ordernum_ValueChanged);
-            // 
-            // dplacesin
-            // 
-            this.dplacesin.Location = new System.Drawing.Point(205, 19);
-            this.dplacesin.Maximum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.dplacesin.Name = "dplacesin";
-            this.dplacesin.Size = new System.Drawing.Size(55, 20);
-            this.dplacesin.TabIndex = 6;
-            this.dplacesin.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.dplacesin.ValueChanged += new System.EventHandler(this.ordernum_ValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(163, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Order:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(157, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Round:";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.dplacesin);
-            this.groupBox4.Controls.Add(this.ordernum);
-            this.groupBox4.Controls.Add(this.domainin);
-            this.groupBox4.Controls.Add(this.xyin);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(3, 686);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(268, 85);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.groupBox4, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox3, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(1134, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(274, 774);
-            this.tableLayoutPanel2.TabIndex = 2;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,12 +319,12 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ordernum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dplacesin)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.limitv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordernum)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -312,11 +335,10 @@
         private System.Windows.Forms.ToolStripMenuItem addCSVFileToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private ScottPlot.FormsPlot graph;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown dplacesin;
+        private System.Windows.Forms.NumericUpDown limitv;
         private System.Windows.Forms.NumericUpDown ordernum;
         private System.Windows.Forms.TextBox domainin;
         private System.Windows.Forms.TextBox xyin;
@@ -329,6 +351,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private ScottPlot.FormsPlot graph;
     }
 }
 

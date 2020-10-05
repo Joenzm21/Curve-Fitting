@@ -1,5 +1,6 @@
 ﻿using LumenWorks.Framework.IO.Csv;
 using MathNet.Numerics;
+using ScottPlot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,11 +18,12 @@ namespace Curve_Fitting
     {
         private static readonly string superscripts = @"⁰¹²³⁴⁵⁶⁷⁸⁹";
         private MDomain domain;
-        private double[] equation;
+        private List<Tuple<double, double[]>> equations;
         private double dpi;
 
         public Main()
         {
+            equations = new List<Tuple<double, double[]>>();
             using (Graphics g = CreateGraphics())
                 this.dpi = Math.Sqrt(g.DpiX * g.DpiX + g.DpiY * g.DpiY);
             InitializeComponent();
@@ -64,80 +66,108 @@ namespace Curve_Fitting
 
         private void Apply()
         {
-            int width = (int)(graph.Size.Width);
+            equations.Clear();
             graph.plt.Clear();
             int count = valuelist.Items.Count;
-            if ((ordernum.Value < count) && (count != 0))
+            double[] equation;
+            double[] xarr = new double[count];
+            double[] yarr = new double[count];
+            for (int i = 0; i < count; i++)
             {
-                double[] xarr = new double[count];
-                double[] yarr = new double[count];
-                for (int i = 0; i < count; i++)
-                {
-                    double.TryParse(valuelist.Items[i].SubItems[2].Text, out double x);
-                    double.TryParse(valuelist.Items[i].SubItems[3].Text, out double y);
-                    graph.plt.PlotPoint(x, y);
-                    xarr[i] = x;
-                    yarr[i] = y;
-                }
-                if (ordernum.Value > 1)
-                    equation = Fit.Polynomial(xarr, yarr, (int)ordernum.Value);
-                else if (ordernum.Value == 1)
-                {
-                    Tuple<double, double> tuple = Fit.Line(xarr, yarr);
-                    equation = new double[] { tuple.Item1, tuple.Item2 };
-                }
-                else
-                    equation = new double[] { Enumerable.Average(yarr) };
-                List<string> equationrstrings = new List<string> { "f(x) = " };
-                for (int j = equation.Length - 1; j >= 0; j--)
-                {
-                    string str;
-                    switch (j)
-                    {
-                        case 0:
-                            str = Math.Round(equation[j], (int)dplacesin.Value).ToString();
-                            if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
-                                equationrstrings.Add(str);
-                            else equationrstrings[equationrstrings.Count - 1] += str;
-                            break;
-
-                        case 1:
-                            str = Math.Round(equation[j], (int)dplacesin.Value).ToString() + "x + ";
-                            if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
-                                equationrstrings.Add(str);
-                            else equationrstrings[equationrstrings.Count - 1] += str;
-                            break;
-
-                        default:
-                            int power = j;
-                            string powerstring = "";
-                            while (power > 0)
-                            {
-                                powerstring += superscripts[power % 10].ToString();
-                                power /= 10;
-                            }
-                            str = Math.Round(equation[j], (int)dplacesin.Value).ToString() + "x" + string.Join("", Enumerable.Reverse(powerstring)) + " + ";
-                            if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
-                                equationrstrings.Add(str);
-                            else equationrstrings[equationrstrings.Count - 1] += str;
-                            break;
-
-                    }
-                }
-                if (!xarr.All(c => domain.Check(c)))
-                {
-                    MessageBox.Show("Out of range", "Domain", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    graph.plt.Title("");
-                    graph.Render();
-                    return;
-                }
-                graph.plt.Title(string.Join(Environment.NewLine, equationrstrings));
-                graph.plt.PlotFunction(FuncCalc, System.Drawing.Color.Red, 2);
+                double.TryParse(valuelist.Items[i].SubItems[2].Text, out double x);
+                double.TryParse(valuelist.Items[i].SubItems[3].Text, out double y);
+                graph.plt.PlotPoint(x, y);
+                xarr[i] = x;
+                yarr[i] = y;
             }
+            double ratio = 0.15;
+            if (xarr.Length < 1) return;
+            double maxx = xarr.Max();
+            double minx = xarr.Min();
+            double maxy = yarr.Max();
+            double miny = yarr.Min();
+            double w = maxx - minx;
+            double h = maxy - miny;
+            graph.plt.Axis(minx - w * ratio / 2, maxx + w * ratio * 2, miny - h * ratio / 2, maxy + h * ratio * 2);
+            if (!xarr.All(c => domain.Check(c)))
+            {
+                MessageBox.Show("Out of range", "Domain", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                graph.plt.Title("");
+                return;
+            }
+            if ((ordernum.Value < count) && (count != 0))
+                for (int k = 1; k <= ordernum.Value; k++)
+                {
+                    if (k > 1)
+                        equation = Fit.Polynomial(xarr, yarr, k);
+                    else
+                    {
+                        Tuple<double, double> tuple = Fit.Line(xarr, yarr);
+                        equation = new double[] { tuple.Item1, tuple.Item2 };
+                    }
+                    if (equations == null) continue;
+                    double r2 = GoodnessOfFit.RSquared(yarr, xarr.Select(x => (double)FuncCalc(equation, x)));
+                    equations.Add(new Tuple<double, double[]>(r2, equation));
+                    equation = null;
+                }
             else graph.plt.Title("");
+            equations.Sort((x, y) => x.Item1.CompareTo(y.Item1));
+            for (int l = equations.Count - 1; l >= Math.Max(0, equations.Count - 3) && Math.Abs(equations[l].Item1 - equations[equations.Count - 1].Item1) <= (double)limitv.Value; l--)
+            {
+                equation = equations[l].Item2;
+                graph.Invoke(new Action(() =>
+                {
+                    Draw(equation);
+                }));
+            }
             graph.Render();
         }
+        private void Draw(double[] equation)
+        {
+            graph.plt.PlotFunction(x => FuncCalc(equation, x), label: TitleEq(equation));
+            graph.plt.Legend();
+        }
+        private string TitleEq(double[] equation)
+        {
+            List<string> equationrstrings = new List<string> { "f(x) = " };
+            int width = (int)(graph.Size.Width * 0.7);
+            for (int j = equation.Length - 1; j >= 0; j--)
+            {
+                string str;
+                switch (j)
+                {
+                    case 0:
+                        str = Math.Round(equation[j], 15).ToString();
+                        if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
+                            equationrstrings.Add(str);
+                        else equationrstrings[equationrstrings.Count - 1] += str;
+                        break;
 
+                    case 1:
+                        str = Math.Round(equation[j], 15).ToString() + "x + ";
+                        if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
+                            equationrstrings.Add(str);
+                        else equationrstrings[equationrstrings.Count - 1] += str;
+                        break;
+
+                    default:
+                        int power = j;
+                        string powerstring = "";
+                        while (power > 0)
+                        {
+                            powerstring += superscripts[power % 10].ToString();
+                            power /= 10;
+                        }
+                        str = Math.Round(equation[j], 15).ToString() + "x" + string.Join("", Enumerable.Reverse(powerstring)) + " + ";
+                        if (GetWidthSize(equationrstrings[equationrstrings.Count - 1] + str) > width)
+                            equationrstrings.Add(str);
+                        else equationrstrings[equationrstrings.Count - 1] += str;
+                        break;
+
+                }
+            }
+            return string.Join(Environment.NewLine, equationrstrings);
+        }
         private void domainin_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -157,7 +187,7 @@ namespace Curve_Fitting
             }
         }
 
-        private double? FuncCalc(double x)
+        private double? FuncCalc(double[] equation, double x)
         {
             if (!domain.Check(x))
                 return null;
